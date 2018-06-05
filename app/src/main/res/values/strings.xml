@@ -1,6 +1,41 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Multi</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_start_setup">Setup</string>
+    <string name="multi_description">a trusted wallet &amp; browser \nfor web3</string>
+    <string name="btn_label_continue">Continue ></string>
+    <string name="step_1_label">1. Setup your wallet.</string>
+    <string name="step_2_label">2. Secure your device.</string>
+    <string name="step_3_label">3. Claim your identity.</string>
+    <string name="multi_device">multi-device</string>
+    <string name="single_device">single-device</string>
+    <string name="link_existing">link existing</string>
+    <string name="name_wallet_title">Name your new wallet.</string>
+    <string name="edit">edit</string>
+    <string name="my_wallet_hint">my wallet</string>
+    <string name="public_key_hint" tools:ignore="TypographyEllipsis">0x...f0xd</string>
+    <string name="passphrase_warning_title">Save this passphrase!</string>
+    <string name="passphrase_warning_text">
+        If you lose this code, you
+        \nwill not be able to recover
+        \nyour funds.
+    </string>
+    <string name="mnemonic_placeholder">
+          dog parrot bikini
+        \nflight carton hint
+        \nteeth boy jobs
+        \neat four kings
+    </string>
+    <string name="mnemonic_disclaimer">
+          By continuing, you agree to
+        \nhaving saved the passphrase
+        \nsafely offline.
+    </string>
+    <string name="confirm_passphrase_title">Confirm your passphrase.</string>
+    <string name="confirm_passphrase_text">
+          Enter your phrase to confirm that you
+        \nhave written down this code safely.
+    </string>
 </resources>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/name_wallet_title"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/darkGrey"
+        android:fontFamily="monospace"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        app:layout_constraintVertical_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/qr_code"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:background="@color/darkGrey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"/>
+
+    <EditText
+        android:id="@+id/wallet_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/transparent"
+        android:focusable="false"
+        android:inputType="none"
+        android:longClickable="false"
+        android:clickable="false"
+        android:hint="@string/my_wallet_hint"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/darkGrey"
+        android:fontFamily="monospace"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintStart_toEndOf="@id/qr_code"
+        app:layout_constraintTop_toTopOf="@id/qr_code"
+        app:layout_constraintBottom_toBottomOf="@id/qr_code"/>
+
+    <Button
+        android:layout_width="48dp"
+        android:layout_height="24dp"
+        android:background="@android:color/transparent"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="@string/edit"
+        android:textAllCaps="false"
+        android:textColor="@color/successGreen"
+        app:layout_constraintStart_toEndOf="@id/wallet_name"
+        app:layout_constraintTop_toTopOf="@id/wallet_name"
+        app:layout_constraintBottom_toBottomOf="@id/wallet_name"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/public_key_hint"
+        android:textSize="18sp"
+        android:fontFamily="serif-monospace"
+        app:layout_constraintStart_toStartOf="@id/wallet_name"
+        app:layout_constraintTop_toBottomOf="@id/wallet_name"/>
+
+    <TextView
+        android:id="@+id/warning_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/passphrase_warning_title"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="monospace"
+        app:layout_constraintTop_toBottomOf="@id/qr_code"
+        app:layout_constraintStart_toStartOf="@id/qr_code"/>
+
+    <TextView
+        android:id="@+id/warning_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="48dp"
+        android:text="@string/passphrase_warning_text"
+        android:textSize="18sp"
+        android:fontFamily="monospace"
+        app:layout_constraintStart_toStartOf="@id/warning_title"
+        app:layout_constraintTop_toBottomOf="@id/warning_title"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/mnemonic_holder"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/existing_device_shape"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/warning_description"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/mnemonic_line_one"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/darkGrey"
+            android:orientation="horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/mnemonic_line_two">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/mnemonic_line_two"
+            android:background="@color/darkGrey"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/mnemonic_line_three"
+            android:background="@color/darkGrey"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mnemonic_line_two"
+            app:layout_constraintBottom_toBottomOf="parent">
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/mnemonic_disclaimer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:text="@string/mnemonic_disclaimer"
+        android:textSize="18sp"
+        android:fontFamily="monospace"
+        android:gravity="fill"
+        app:layout_constraintTop_toBottomOf="@id/mnemonic_holder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/continue_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginTop="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/btn_label_continue"
+        android:textSize="16sp"
+        android:fontFamily="monospace"
+        android:background="@drawable/ic_rounded_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mnemonic_disclaimer" />
+
+</android.support.constraint.ConstraintLayout>
