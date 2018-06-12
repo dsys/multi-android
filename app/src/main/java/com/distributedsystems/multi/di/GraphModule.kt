@@ -22,7 +22,7 @@ class GraphModule {
 
     @Provides
     @Singleton
-    fun logginInterceptor() : HttpLoggingInterceptor = HttpLoggingInterceptor({
+    fun loggingInterceptor() : HttpLoggingInterceptor = HttpLoggingInterceptor({
         Log.i(LOG_TAG, it)
     }).setLevel(HttpLoggingInterceptor.Level.BASIC)
 

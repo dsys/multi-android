@@ -10,12 +10,12 @@
         android:layout_height="wrap_content"
         android:text="@string/confirm_passphrase_title"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textColor="@color/darkGrey"
         android:fontFamily="monospace"
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
-        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintVertical_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -36,59 +36,66 @@
 
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/mneumonic_holder"
+        android:id="@+id/mnemonic_holder"
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/existing_device_shape"
-        android:clickable="false"
+        android:background="@drawable/mnemonic_holder_background"
+        android:clickable="true"
         android:focusable="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/warning_description">
 
-        <LinearLayout
-            android:id="@+id/mneumonic_line_one"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+        <EditText
+            android:id="@+id/mnemonic_confirmation_field"
+            android:background="@android:color/transparent"
+            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/darkGrey"
+            android:fontFamily="monospace"
+            android:inputType="textNoSuggestions"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/mneumonic_line_two">
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:id="@+id/mneumonic_line_two"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:id="@+id/mneumonic_line_three"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mneumonic_line_two"
-            app:layout_constraintBottom_toBottomOf="parent">
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/progress_bar_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:text="Creating Wallet..."
+        android:fontFamily="monospace"
+        android:visibility="invisible"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mnemonic_holder"
+        app:layout_constraintBottom_toTopOf="@id/progress_bar"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:indeterminateOnly="true"
+        android:visibility="invisible"
+        style="?android:attr/progressBarStyleHorizontal"
+        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintTop_toBottomOf="@id/mnemonic_holder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

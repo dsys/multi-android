@@ -3,8 +3,11 @@ package com.distributedsystems.multi.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.distributedsystems.multi.db.MultiDatabase
+import com.distributedsystems.multi.db.WalletDao
 import dagger.Module
 import dagger.Provides
+import org.jetbrains.anko.defaultSharedPreferences
 import javax.inject.Singleton
 
 @Module
@@ -21,6 +24,12 @@ class AppModule(private val app: Application) {
     @Provides
     @Singleton
     fun providesWalletSharedPreferences(context: Context) : SharedPreferences {
-        return context.getSharedPreferences(PREF_WALLET, Context.MODE_PRIVATE)
+        return context.defaultSharedPreferences
+    }
+
+    @Provides
+    @Singleton
+    fun providesWalletDatabase(context: Context) : WalletDao {
+        return MultiDatabase.getInstance(context).walletDao()
     }
 }
