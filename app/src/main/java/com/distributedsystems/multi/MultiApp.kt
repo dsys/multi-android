@@ -2,9 +2,9 @@ package com.distributedsystems.multi
 
 import android.app.Activity
 import android.app.Application
+import com.distributedsystems.multi.di.AppComponent
 import com.distributedsystems.multi.di.AppModule
 import com.distributedsystems.multi.di.DaggerAppComponent
-import com.distributedsystems.multi.di.GraphModule
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -17,6 +17,8 @@ class MultiApp : Application(), HasActivityInjector {
         fun get() : MultiApp = me!!
     }
 
+    private lateinit var component: AppComponent
+
     @Inject lateinit var activityDispatchingAndroidInjector:
             DispatchingAndroidInjector<Activity>
 
@@ -24,12 +26,18 @@ class MultiApp : Application(), HasActivityInjector {
         super.onCreate()
         me = this
 
-        DaggerAppComponent.builder()
+        component = DaggerAppComponent.builder()
                 .application(this)
                 .appModule(AppModule(this))
                 .build()
-                .inject(this)
+                .apply {
+                    inject(this@MultiApp)
+                }
 
+    }
+
+    fun getComponent() : AppComponent {
+        return component
     }
 
     override fun activityInjector(): AndroidInjector<Activity>? =

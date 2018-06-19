@@ -6,6 +6,7 @@
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="darkGrey">#474652</color>
     <color name="lightGrey">#9e9e9e</color>
+    <color name="paleGrey">#dcdcdc</color>
     <color name="successGreen">#35B299</color>
     <color name="lightGreen">#53C0AB</color>
 

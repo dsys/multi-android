@@ -14,6 +14,7 @@
     <string name="link_existing">link existing</string>
     <string name="name_wallet_title">Name your new wallet.</string>
     <string name="edit">edit</string>
+    <string name="done">done</string>
     <string name="my_wallet_hint">my wallet</string>
     <string name="public_key_hint" tools:ignore="TypographyEllipsis">0x...f0xd</string>
     <string name="passphrase_warning_title">Save this passphrase!</string>
@@ -37,5 +38,8 @@
     <string name="confirm_passphrase_text">
           Enter your phrase to confirm that you
         \nhave written down this code safely.
+    </string>
+    <string name="wallet_address_subtext" tools:ignore="TypographyEllipsis">
+        0x...%s
     </string>
 </resources>

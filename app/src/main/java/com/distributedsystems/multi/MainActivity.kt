@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        MultiApp.get().getComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
