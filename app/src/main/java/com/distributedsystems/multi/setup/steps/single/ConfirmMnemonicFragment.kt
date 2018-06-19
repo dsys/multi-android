@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,21 +68,29 @@ class ConfirmMnemonicFragment : Fragment() {
             getInputMethodManager()?.showSoftInput(mnemonic_confirmation_field, InputMethodManager.SHOW_IMPLICIT)
         }
 
-        mnemonic_confirmation_field.setOnClickListener {
-            mnemonic_confirmation_field.setSelection(mnemonic_confirmation_field.text.length)
-        }
-        mnemonic_confirmation_field.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if(s!!.endsWith(" ")) {
-                    verifyWords(s.toString().substring(0, s.indexOf(" ")))
-                } else if(currentWord == 11) {
-                    verifyWords(s.toString())
+        mnemonic_confirmation_field.apply {
+            setOnClickListener { mnemonic_confirmation_field.setSelection(mnemonic_confirmation_field.text.length) }
+            setOnKeyListener {v, keyCode, event ->
+                if(event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    verifyWords(mnemonic_confirmation_field.text.toString())
+                    true
+                } else {
+                    false
                 }
             }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    if(s!!.endsWith(" ")) {
+                        verifyWords(s.toString().substring(0, s.indexOf(" ")))
+                    } else if(currentWord == 11) {
+                        verifyWords(s.toString())
+                    }
+                }
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
-        })
+            })
+        }
     }
 
     private fun verifyWords(word: String) {
