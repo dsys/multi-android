@@ -1,0 +1,28 @@
+query TransactionFeed($address: EthereumAddressString!, $network: ETHEREUM_NETWORK) {
+    ethereumAddress(address: $address, network: $network) {
+        transactions {
+            from{
+                hex
+            }
+            to {
+                hex
+            }
+            value {
+                display(precision: 2)
+                ether
+            }
+            status
+            hash
+            gas
+            gasPrice {
+                ether
+                display(precision: 2)
+            }
+            gasUsed
+            cumulativeGasUsed
+            contractAddress {
+                hex
+            }
+        }
+    }
+}

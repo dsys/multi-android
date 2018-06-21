@@ -3,27 +3,42 @@ package com.distributedsystems.multi
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var currentFragment : Int = R.id.transactionsFragment
+    private var disposable = CompositeDisposable()
+    private lateinit var navController : NavController
+    private var navOptions = NavOptions.Builder()
+            .setEnterAnim(R.anim.default_enter)
+            .setExitAnim(R.anim.default_exit)
+            .build()
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                message.setText(R.string.title_home)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_dashboard -> {
-                message.setText(R.string.title_dashboard)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
-                message.setText(R.string.title_notifications)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.start_setup -> {
-                message.setText(R.string.title_start_setup)
-                return@OnNavigationItemSelectedListener true
+        if(item.itemId != currentFragment) {
+            currentFragment = item.itemId
+            when (item.itemId) {
+                R.id.browseFragment -> {
+                    navController.navigate(R.id.browseFragment, null, navOptions)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.tokenFragment -> {
+                    navController.navigate(R.id.browseFragment, null, navOptions)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.transactionsFragment -> {
+                    navController.navigate(R.id.transactionsFragment, null, navOptions)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.profileFragment -> {
+                    navController.navigate(R.id.profileFragment, null, navOptions)
+                    return@OnNavigationItemSelectedListener true
+                }
             }
         }
         false
@@ -33,7 +48,16 @@ class MainActivity : AppCompatActivity() {
         MultiApp.get().getComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        navController = findNavController(R.id.nav_host_fragment)
+        if(savedInstanceState == null) {
+            navController.navigate(R.id.transactionsFragment)
+            navigation.selectedItemId = R.id.transactionsFragment
+        }
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
+
+    override fun onSupportNavigateUp(): Boolean = findNavController(R.id.nav_host_fragment).navigateUp()
+
+    fun getDisposable() : CompositeDisposable = disposable
 }

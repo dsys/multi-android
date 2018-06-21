@@ -61,6 +61,10 @@ class ConfirmMnemonicFragment : Fragment() {
         getInputMethodManager()?.showSoftInput(mnemonic_confirmation_field, InputMethodManager.SHOW_IMPLICIT)
     }
 
+    override fun onStop() {
+        super.onStop()
+        disposable.clear()
+    }
 
     private fun watchInputs() {
         mnemonic_holder.setOnClickListener {

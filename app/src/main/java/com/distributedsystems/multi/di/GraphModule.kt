@@ -3,6 +3,14 @@ package com.distributedsystems.multi.di
 import android.content.Context
 import android.util.Log
 import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.response.CustomTypeAdapter
+import com.apollographql.apollo.response.CustomTypeValue
+import com.distributedsystems.multi.BuildConfig
+import com.distributedsystems.multi.networking.scalars.BigNumber
+import com.distributedsystems.multi.networking.scalars.EthereumAddressString
+import com.distributedsystems.multi.networking.scalars.EthereumTransactionHashHexValue
+import com.distributedsystems.multi.networking.scalars.HexValue
+import com.distributedsystems.multi.type.CustomType
 import dagger.Module
 import dagger.Provides
 import io.reactivex.annotations.NonNull
@@ -17,14 +25,14 @@ import javax.inject.Singleton
 class GraphModule {
 
     companion object {
-        val LOG_TAG = GraphModule::class.java.canonicalName
+        val LOG_TAG = GraphModule::class.java.simpleName!!
     }
 
     @Provides
     @Singleton
-    fun loggingInterceptor() : HttpLoggingInterceptor = HttpLoggingInterceptor({
+    fun loggingInterceptor() : HttpLoggingInterceptor = HttpLoggingInterceptor {
         Log.i(LOG_TAG, it)
-    }).setLevel(HttpLoggingInterceptor.Level.BASIC)
+    }.setLevel(HttpLoggingInterceptor.Level.BASIC)
 
     @Provides
     @Singleton
@@ -40,17 +48,81 @@ class GraphModule {
             OkHttpClient.Builder()
                     .addInterceptor(httpLoggingInterceptor)
                     .cache(cache)
-                    .writeTimeout(10, TimeUnit.SECONDS)
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(10, TimeUnit.SECONDS)
+                    .writeTimeout(30, TimeUnit.SECONDS)
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
                     .build()
 
     @Provides
     @Singleton
-    fun provideApolloClient (@NonNull okHttpClient: OkHttpClient) : ApolloClient =
+    fun providesEthereumAddressCustomTypeAdapter() : CustomTypeAdapter<EthereumAddressString> {
+        return object : CustomTypeAdapter<EthereumAddressString> {
+            override fun decode(value: CustomTypeValue<*>): EthereumAddressString {
+                return EthereumAddressString(value.value.toString())
+            }
+
+            override fun encode(value: EthereumAddressString): CustomTypeValue<*> {
+                return CustomTypeValue.GraphQLString(value.toString())
+            }
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun providesEthereumTransactionHashCustomTypeAdapter() : CustomTypeAdapter<EthereumTransactionHashHexValue> {
+        return object : CustomTypeAdapter<EthereumTransactionHashHexValue> {
+            override fun decode(value: CustomTypeValue<*>): EthereumTransactionHashHexValue {
+                return EthereumTransactionHashHexValue(value.value.toString())
+            }
+
+            override fun encode(value: EthereumTransactionHashHexValue): CustomTypeValue<*> {
+                return CustomTypeValue.GraphQLString(value.toString())
+            }
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun providesBigNumberCustomTypeAdapter() : CustomTypeAdapter<BigNumber> {
+        return object : CustomTypeAdapter<BigNumber> {
+            override fun decode(value: CustomTypeValue<*>): BigNumber {
+                return BigNumber(value.value.toString().toBigDecimal())
+            }
+
+            override fun encode(value: BigNumber): CustomTypeValue<*> {
+                return CustomTypeValue.GraphQLString(value.toString())
+            }
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun providesHexValueCustomTypeAdapter() : CustomTypeAdapter<HexValue> {
+        return object : CustomTypeAdapter<HexValue> {
+            override fun decode(value: CustomTypeValue<*>): HexValue {
+                return HexValue(value.value.toString())
+            }
+
+            override fun encode(value: HexValue): CustomTypeValue<*> {
+                return CustomTypeValue.GraphQLString(value.toString())
+            }
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun provideApolloClient (@NonNull okHttpClient: OkHttpClient,
+                             @NonNull hexValueAdapter: CustomTypeAdapter<HexValue>,
+                             @NonNull addressHexAdapter: CustomTypeAdapter<EthereumAddressString>,
+                             @NonNull bigNumberAdapter: CustomTypeAdapter<BigNumber>,
+                             @NonNull transactionHashAdapter: CustomTypeAdapter<EthereumTransactionHashHexValue>) : ApolloClient =
             ApolloClient.builder()
-                    .serverUrl("api-staging.multi.app")
+                    .serverUrl("https://${BuildConfig.BASE_URL}")
                     .okHttpClient(okHttpClient)
+                    .addCustomTypeAdapter(CustomType.ETHEREUMADDRESSSTRING, addressHexAdapter)
+                    .addCustomTypeAdapter(CustomType.HEXVALUE, hexValueAdapter)
+                    .addCustomTypeAdapter(CustomType.ETHEREUMTRANSACTIONHASHHEXVALUE, transactionHashAdapter)
+                    .addCustomTypeAdapter(CustomType.BIGNUMBER, bigNumberAdapter)
                     .build()
 
 }

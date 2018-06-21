@@ -4,11 +4,14 @@ import android.app.Application
 import com.distributedsystems.multi.LandingActivity
 import com.distributedsystems.multi.MainActivity
 import com.distributedsystems.multi.MultiApp
+import com.distributedsystems.multi.profile.ProfileFragment
 import com.distributedsystems.multi.setup.SetupActivity
 import com.distributedsystems.multi.setup.steps.IntroFragment
 import com.distributedsystems.multi.setup.steps.SelectWalletFragment
 import com.distributedsystems.multi.setup.steps.single.ConfirmMnemonicFragment
 import com.distributedsystems.multi.setup.steps.single.DisplayMnemonicFragment
+import com.distributedsystems.multi.transactions.TransactionDetailsFragment
+import com.distributedsystems.multi.transactions.TransactionsFragment
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -43,4 +46,7 @@ import javax.inject.Singleton
     fun inject(confirmMnemonicFragment: ConfirmMnemonicFragment)
 
     fun inject(mainActivity: MainActivity)
+    fun inject(profileFragment: ProfileFragment)
+    fun inject(transactionsFragment: TransactionsFragment)
+    fun inject(transactionDetailsFragment: TransactionDetailsFragment)
 }

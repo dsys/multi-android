@@ -12,7 +12,7 @@ class LandingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         MultiApp.get().getComponent().inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_landing)
+        setContentView(R.layout.fragment_landing)
 
         if(needsSetup()) {
             startActivity<SetupActivity>()

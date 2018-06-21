@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/browseFragment">
+
+    <fragment
+        android:id="@+id/browseFragment"
+        android:name="com.distributedsystems.multi.browse.BrowseFragment"
+        android:label="BrowseFragment" />
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="com.distributedsystems.multi.transactions.TransactionsFragment"
+        android:label="TransactionsFragment" >
+        <action
+            android:id="@+id/action_transactionsFragment_to_transactionDetailsFragment"
+            app:destination="@id/transactionDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.distributedsystems.multi.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/transactionDetailsFragment"
+        android:name="com.distributedsystems.multi.transactions.TransactionDetailsFragment"
+        android:label="TransactionDetailsFragment" />
+
+</navigation>
