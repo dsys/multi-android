@@ -60,4 +60,17 @@
     <string name="declined">Declined</string>
     <string name="load_transactions_error">Unable to load transactions</string>
     <string name="transaction_details">Transaction Details</string>
+    <string name="tx_amount_hint">0.25 mETH</string>
+    <string name="incoming_transaction">Incoming Transaction</string>
+    <string name="outgoing_transaction">Outgoing Transaction</string>
+    <string name="recipient">Recipient</string>
+    <string name="sender">Sender</string>
+    <string name="transaction_hash">Transaction Hash</string>
+    <string name="block_number">Block Number</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="gas">Gas</string>
+    <string name="gas_limit">Gas Limit</string>
+    <string name="gas_used">Gas Used</string>
+    <string name="cumulative_gas_used">Cumulative Gas Used</string>
+    <string name="gas_price">Gas Price</string>
 </resources>

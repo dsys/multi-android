@@ -23,6 +23,10 @@ query TransactionFeed($address: EthereumAddressString!, $network: ETHEREUM_NETWO
             contractAddress {
                 hex
             }
+            block {
+                number
+                timestamp
+            }
         }
     }
 }

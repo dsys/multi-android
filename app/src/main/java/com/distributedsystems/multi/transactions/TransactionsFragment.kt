@@ -15,7 +15,9 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.distributedsystems.multi.MultiApp
 import com.distributedsystems.multi.R
 import com.distributedsystems.multi.TransactionFeedQuery
@@ -44,7 +46,6 @@ class TransactionsFragment : Fragment() {
     internal lateinit var viewModelFactory : GenericViewModelFactory<TransactionsViewModel>
     private lateinit var viewModel : TransactionsViewModel
     private var wallet : Wallet? = null
-    private var disposable = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_transactions, container, false)
@@ -56,18 +57,15 @@ class TransactionsFragment : Fragment() {
         viewModel = getViewModel(TransactionsViewModel::class.java, viewModelFactory)
 
         transactions_list.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        renderWalletDetails()
         setOnAddressLongPress()
         setAppBarStateChangeListener()
-        observeTransactions()
         renderWalletDetails()
         setOnSwipeRefreshListener()
     }
 
-
     override fun onStop() {
         super.onStop()
-        disposable.clear()
+        viewModel.clearDisposable()
     }
 
     private fun setAppBarStateChangeListener() {
@@ -113,7 +111,8 @@ class TransactionsFragment : Fragment() {
             eth_address.text = resources.getString(R.string.wallet_address_subtext,
                     publicKey.substring(publicKey.length - 5 until publicKey.length))
             qr_code.setImageBitmap(qrBitmap)
-            viewModel.fetchTransactions()
+            viewModel.fetchTransactions(false)
+            observeTransactions()
         })
     }
 
@@ -133,13 +132,20 @@ class TransactionsFragment : Fragment() {
                 transactions_list.visibility = View.GONE
             }
         })
+
+        viewModel.getTransactionsError().observe(this, Observer<String> {
+            context?.toast(it!!)
+        })
     }
 
     private fun setOnTransactionClickedListener() {
         (transactions_list.adapter as TransactionsListAdapter).setChildOnClickListener(object: TransactionsListAdapter.OnTransactionClickedListener {
             override fun onTransactionClicked(transaction: TransactionFeedQuery.Transaction, position: Int) {
                 viewModel.setCurrentTransaction(transaction)
-                findNavController().navigate(R.id.transactionDetailsFragment)
+                findNavController().navigate(R.id.transactionDetailsFragment, null, NavOptions.Builder()
+                        .setEnterAnim(R.anim.slide_in_bottom)
+                        .setExitAnim(R.anim.default_exit)
+                        .build())
             }
         })
     }
@@ -147,7 +153,7 @@ class TransactionsFragment : Fragment() {
     private fun setOnSwipeRefreshListener() {
         swipeRefreshLayout.setOnRefreshListener {
             if(viewModel.getWallet().value != null) {
-                viewModel.fetchTransactions()
+                viewModel.fetchTransactions(true)
             } else {
                 viewModel.getDefaultWallet()
             }

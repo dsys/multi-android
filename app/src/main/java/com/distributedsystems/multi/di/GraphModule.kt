@@ -55,59 +55,55 @@ class GraphModule {
 
     @Provides
     @Singleton
-    fun providesEthereumAddressCustomTypeAdapter() : CustomTypeAdapter<EthereumAddressString> {
-        return object : CustomTypeAdapter<EthereumAddressString> {
-            override fun decode(value: CustomTypeValue<*>): EthereumAddressString {
-                return EthereumAddressString(value.value.toString())
-            }
+    fun providesEthereumAddressCustomTypeAdapter() : CustomTypeAdapter<EthereumAddressString> =
+            object : CustomTypeAdapter<EthereumAddressString> {
+                override fun decode(value: CustomTypeValue<*>): EthereumAddressString {
+                    return EthereumAddressString(value.value.toString())
+                }
 
-            override fun encode(value: EthereumAddressString): CustomTypeValue<*> {
-                return CustomTypeValue.GraphQLString(value.toString())
+                override fun encode(value: EthereumAddressString): CustomTypeValue<*> {
+                    return CustomTypeValue.GraphQLString(value.toString())
+                }
             }
-        }
-    }
-
-    @Provides
-    @Singleton
-    fun providesEthereumTransactionHashCustomTypeAdapter() : CustomTypeAdapter<EthereumTransactionHashHexValue> {
-        return object : CustomTypeAdapter<EthereumTransactionHashHexValue> {
-            override fun decode(value: CustomTypeValue<*>): EthereumTransactionHashHexValue {
-                return EthereumTransactionHashHexValue(value.value.toString())
-            }
-
-            override fun encode(value: EthereumTransactionHashHexValue): CustomTypeValue<*> {
-                return CustomTypeValue.GraphQLString(value.toString())
-            }
-        }
-    }
 
     @Provides
     @Singleton
-    fun providesBigNumberCustomTypeAdapter() : CustomTypeAdapter<BigNumber> {
-        return object : CustomTypeAdapter<BigNumber> {
-            override fun decode(value: CustomTypeValue<*>): BigNumber {
-                return BigNumber(value.value.toString().toBigDecimal())
-            }
+    fun providesEthereumTransactionHashCustomTypeAdapter() : CustomTypeAdapter<EthereumTransactionHashHexValue> =
+            object : CustomTypeAdapter<EthereumTransactionHashHexValue> {
+                override fun decode(value: CustomTypeValue<*>): EthereumTransactionHashHexValue {
+                    return EthereumTransactionHashHexValue(value.value.toString())
+                }
 
-            override fun encode(value: BigNumber): CustomTypeValue<*> {
-                return CustomTypeValue.GraphQLString(value.toString())
+                override fun encode(value: EthereumTransactionHashHexValue): CustomTypeValue<*> {
+                    return CustomTypeValue.GraphQLString(value.toString())
+                }
             }
-        }
-    }
 
     @Provides
     @Singleton
-    fun providesHexValueCustomTypeAdapter() : CustomTypeAdapter<HexValue> {
-        return object : CustomTypeAdapter<HexValue> {
-            override fun decode(value: CustomTypeValue<*>): HexValue {
-                return HexValue(value.value.toString())
+    fun providesBigNumberCustomTypeAdapter() : CustomTypeAdapter<BigNumber> =
+            object : CustomTypeAdapter<BigNumber> {
+                override fun decode(value: CustomTypeValue<*>): BigNumber {
+                    return BigNumber(value.value.toString().toBigDecimal())
+                }
+
+                override fun encode(value: BigNumber): CustomTypeValue<*> {
+                    return CustomTypeValue.GraphQLString(value.toString())
+                }
             }
 
-            override fun encode(value: HexValue): CustomTypeValue<*> {
-                return CustomTypeValue.GraphQLString(value.toString())
+    @Provides
+    @Singleton
+    fun providesHexValueCustomTypeAdapter() : CustomTypeAdapter<HexValue> =
+            object : CustomTypeAdapter<HexValue> {
+                override fun decode(value: CustomTypeValue<*>): HexValue {
+                    return HexValue(value.value.toString())
+                }
+
+                override fun encode(value: HexValue): CustomTypeValue<*> {
+                    return CustomTypeValue.GraphQLString(value.toString())
+                }
             }
-        }
-    }
 
     @Provides
     @Singleton

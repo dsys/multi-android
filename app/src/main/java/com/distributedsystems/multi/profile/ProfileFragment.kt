@@ -25,12 +25,8 @@ class ProfileFragment : Fragment() {
     @Inject
     internal lateinit var viewModelFactory : GenericViewModelFactory<ProfileViewModel>
     private lateinit var viewModel : ProfileViewModel
-    private lateinit var disposable : CompositeDisposable
     private var wallet : Wallet? = null
-
-    companion object {
-        fun newInstance() : ProfileFragment = ProfileFragment()
-    }
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
@@ -40,13 +36,12 @@ class ProfileFragment : Fragment() {
         MultiApp.get().getComponent().inject(this)
         super.onViewCreated(view, savedInstanceState)
         viewModel = getViewModel(ProfileViewModel::class.java, viewModelFactory)
-        disposable = (activity as MainActivity).getDisposable()
 
         renderWalletDetails()
     }
 
     private fun renderWalletDetails() {
-        disposable.add(viewModel.getDefaultWallet()
+        compositeDisposable.add(viewModel.getDefaultWallet()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
@@ -65,5 +60,10 @@ class ProfileFragment : Fragment() {
     private fun formatIssuedDate(date: Date) : String {
         val sdf = SimpleDateFormat("MM/YY", Locale.getDefault())
         return sdf.format(date)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        compositeDisposable.clear()
     }
 }
