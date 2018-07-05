@@ -1,9 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Multi</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_start_setup">Setup</string>
+
+    <string name="title_browse">Browse</string>
+    <string name="title_tokens">Tokens</string>
+    <string name="title_transactions">Transactions</string>
+    <string name="title_profile">Profile</string>
+
     <string name="multi_description">a trusted wallet &amp; browser \nfor web3</string>
     <string name="btn_label_continue">Continue ></string>
     <string name="step_1_label">1. Setup your wallet.</string>
@@ -42,4 +44,33 @@
     <string name="wallet_address_subtext" tools:ignore="TypographyEllipsis">
         0x...%s
     </string>
+    <string name="wallet_issue_date" tools:ignore="TypographyEllipsis">
+          Issued %s
+    </string>
+    <string name="recent_activity">Recent Activity</string>
+    <string name="you_don_t_have_any_transactions">
+          You don\'t have any transactions
+        \n
+        \n😱😨😰
+    </string>
+    <string name="value_in_eth">
+        %s ETH
+    </string>
+    <string name="success">Success</string>
+    <string name="declined">Declined</string>
+    <string name="load_transactions_error">Unable to load transactions</string>
+    <string name="transaction_details">Transaction Details</string>
+    <string name="tx_amount_hint">0.25 mETH</string>
+    <string name="incoming_transaction">Incoming Transaction</string>
+    <string name="outgoing_transaction">Outgoing Transaction</string>
+    <string name="recipient">Recipient</string>
+    <string name="sender">Sender</string>
+    <string name="transaction_hash">Transaction Hash</string>
+    <string name="block_number">Block Number</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="gas">Gas</string>
+    <string name="gas_limit">Gas Limit</string>
+    <string name="gas_used">Gas Used</string>
+    <string name="cumulative_gas_used">Cumulative Gas Used</string>
+    <string name="gas_price">Gas Price</string>
 </resources>

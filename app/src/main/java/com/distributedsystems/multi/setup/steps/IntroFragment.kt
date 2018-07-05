@@ -8,6 +8,7 @@ import android.support.v4.app.SupportActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.distributedsystems.multi.MultiApp
 import com.distributedsystems.multi.R
 import com.distributedsystems.multi.common.GenericViewModelFactory

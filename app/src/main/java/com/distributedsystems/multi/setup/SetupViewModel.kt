@@ -11,6 +11,7 @@ import io.reactivex.Completable
 import org.jetbrains.anko.defaultSharedPreferences
 import org.web3j.crypto.ECKeyPair
 import org.web3j.crypto.Keys
+import java.util.*
 import javax.inject.Inject
 
 class SetupViewModel @Inject constructor(
@@ -41,7 +42,7 @@ class SetupViewModel @Inject constructor(
 
     private fun getWalletName() : String = setupModel.walletName
 
-    fun getPublicAddress() : String = Keys.getAddress(setupModel.ecKeyPair)
+    fun getPublicAddress() : String = "0x${Keys.getAddress(setupModel.ecKeyPair)}"
     private fun getKeyPair() : ECKeyPair? = setupModel.ecKeyPair
 
     fun insertAndSetupUser(): Completable {
@@ -58,8 +59,12 @@ class SetupViewModel @Inject constructor(
             val keyPair = getKeyPair()
             val publicAddress = getPublicAddress()
             val walletName = getWalletName()
-            val wallet = Wallet(null, keyPair!!.publicKey.toString(16), keyPair.privateKey.toString(16), publicAddress, walletName)
-            walletDb.insert(wallet)
+            val wallet = Wallet(null, Date(), keyPair!!.publicKey.toString(16), keyPair.privateKey.toString(16), publicAddress, walletName)
+            val id = walletDb.insert(wallet)
+            MultiApp.get().defaultSharedPreferences
+                    .edit()
+                    .putLong(Preferences.PREF_DEFAULT_WALLET_ID, id)
+                    .apply()
         }
     }
 }

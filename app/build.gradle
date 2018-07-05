@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.apollographql.android'
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion 27
@@ -17,15 +18,24 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "SEED_GEN_PATH", "\"m/44'/60'/0'/0/\""
+            buildConfigField "String", "BASE_URL", "\"api-staging.multi.app\""
         }
 
         release {
             buildConfigField "String", "SEED_GEN_PATH", "\"m/44'/60'/0'/0/\""
+            buildConfigField "String", "BASE_URL", "\"api.cleargraph.com\""
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+apollo {
+    customTypeMapping['EthereumAddressString'] = "com.distributedsystems.multi.networking.scalars.EthereumAddressString"
+    customTypeMapping['EthereumTransactionHashHexValue'] = "com.distributedsystems.multi.networking.scalars.EthereumTransactionHashHexValue"
+    customTypeMapping['BigNumber'] = "com.distributedsystems.multi.networking.scalars.BigNumber"
+    customTypeMapping['HexValue'] = "com.distributedsystems.multi.networking.scalars.HexValue"
 }
 
 dependencies {
@@ -37,6 +47,10 @@ dependencies {
 
     // Anko Commons Lib
     implementation "org.jetbrains.anko:anko-commons:${versions.anko}"
+
+    // Navigation Components
+    implementation "android.arch.navigation:navigation-fragment-ktx:${versions.nav_version}"
+    implementation "android.arch.navigation:navigation-ui-ktx:${versions.nav_version}"
 
     // Room Persistence
     implementation "android.arch.persistence.room:runtime:${versions.room}"
@@ -62,6 +76,7 @@ dependencies {
 
     // Apollo
     implementation "com.apollographql.apollo:apollo-runtime:${versions.apollo}"
+    implementation "com.apollographql.apollo:apollo-rx2-support:${versions.apollo}"
 
     // Web3j
     implementation "org.web3j:core:3.3.1-android"

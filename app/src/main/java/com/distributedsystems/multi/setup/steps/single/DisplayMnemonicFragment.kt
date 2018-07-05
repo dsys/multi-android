@@ -116,7 +116,7 @@ class DisplayMnemonicFragment : Fragment() {
 
     private fun setOnContinue() {
         continue_btn.setOnClickListener {
-            setupViewModel.setWalletName(wallet_name.text.toString())
+            if(wallet_name.text.isNotEmpty()) setupViewModel.setWalletName(wallet_name.text.toString())
             (this.activity as SetupActivity).addAndReplaceFragment(ConfirmMnemonicFragment.newInstance())
         }
     }
