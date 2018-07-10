@@ -14,20 +14,20 @@
 
             <solid android:color="#00CCCCCC" />
 
-            <corners android:radius="10dp" />
+            <corners android:radius="5dp" />
         </shape>
     </item>
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:left="2dp"
-                android:right="2dp"
-                android:top="2dp" />
+                android:bottom="5dp"
+                android:left="5dp"
+                android:right="5dp"
+                android:top="5dp" />
 
             <solid android:color="#10CCCCCC" />
 
-            <corners android:radius="10dp" />
+            <corners android:radius="5dp" />
         </shape>
     </item>
     <item>
@@ -40,7 +40,7 @@
 
             <solid android:color="#20CCCCCC" />
 
-            <corners android:radius="10dp" />
+            <corners android:radius="5dp" />
         </shape>
     </item>
     <item>
@@ -53,7 +53,7 @@
 
             <solid android:color="#30CCCCCC" />
 
-            <corners android:radius="10dp" />
+            <corners android:radius="5dp" />
         </shape>
     </item>
     <item>
@@ -66,7 +66,7 @@
 
             <solid android:color="#50CCCCCC" />
 
-            <corners android:radius="10dp" />
+            <corners android:radius="5dp" />
         </shape>
     </item>
     <item>
@@ -75,14 +75,14 @@
                 <shape
                     android:shape="rectangle">
                     <solid android:color="@color/paleTeal" />
-                    <corners android:radius="10dp" />
+                    <corners android:radius="5dp" />
                 </shape>
             </item>
             <item android:state_pressed="true">
                 <shape
                     android:shape="rectangle">
                     <solid android:color="@color/pressedTeal" />
-                    <corners android:radius="10dp" />
+                    <corners android:radius="5dp" />
                 </shape>
             </item>
         </selector>

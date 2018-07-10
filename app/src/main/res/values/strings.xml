@@ -6,14 +6,24 @@
     <string name="title_transactions">Transactions</string>
     <string name="title_profile">Profile</string>
 
-    <string name="multi_description">a trusted wallet &amp; browser \nfor web3</string>
-    <string name="btn_label_continue">Continue ></string>
-    <string name="step_1_label">1. Setup your wallet.</string>
-    <string name="step_2_label">2. Secure your device.</string>
-    <string name="step_3_label">3. Claim your identity.</string>
-    <string name="multi_device">multi-device</string>
-    <string name="single_device">single-device</string>
-    <string name="link_existing">link existing</string>
+    <string name="multi_description">The trusted wallet &amp; browser for web3</string>
+    <string name="btn_label_continue">Continue</string>
+    <string name="btn_label_next">Next</string>
+    <string name="btn_label_get_started">Get Started</string>
+
+    <string name="welcome_to_multi">Welcome to multi</string>
+
+    <string name="step_1_label">1. Setup your wallet</string>
+    <string name="step_1_title">Setup your wallet</string>
+
+    <string name="step_2_label">2. Claim your identity</string>
+    <string name="step_2_title">Claim your identity</string>
+
+    <string name="step_3_label">3. Secure your device</string>
+    <string name="step_3_title">Secure your device</string>
+
+    <string name="link_existing">Link Existing</string>
+
     <string name="name_wallet_title">Name your new wallet.</string>
     <string name="edit">edit</string>
     <string name="done">done</string>
@@ -73,4 +83,35 @@
     <string name="gas_used">Gas Used</string>
     <string name="cumulative_gas_used">Cumulative Gas Used</string>
     <string name="gas_price">Gas Price</string>
+    <string name="wallet_balance">Balance</string>
+    <string name="create_identity">Create Identity</string>
+    <string name="create_identity_description">Explain What Creating An Identity Means</string>
+    <string name="link_existing_label">Already set up?</string>
+    <string name="name_uname_step_title">First, the formalities</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="username">Username</string>
+    <string name="request_phonenumber_title">Can I get your number?</string>
+    <string name="request_phonenumber_description">Explain why we need phone number</string>
+    <string name="phone_number_hint">123–456–7890</string>
+    <string name="btn_label_submit">Submit</string>
+    <string name="enter_verification_code">Verify your number</string>
+    <string name="enter_verification_code_description">A one time code has been sent to your number.\nEnter it to complete verifying your phone number.</string>
+    <string name="no_second_device">I don\'t have another device</string>
+    <string name="link_another_device">Link another device</string>
+    <string name="link_device_description">Open Multi on another device and scan the code that appears after tapping Link an existing identity.</string>
+    <string name="phone_number_verified">Phone number verified!</string>
+    <string name="finish_setup_description">Continue to finish setting up your wallet.</string>
+    <string name="set_passphrase">Set a passphrase</string>
+    <string name="passphrase_description">This passphrase can be used to link another device or recover your account</string>
+    <string name="passphrase_hint">Passphrase</string>
+    <string name="invalid_phone_number_error">Please enter a valid phone number.</string>
+    <string name="invalid_name_error">Please enter a valid name.</string>
+    <string name="username_too_short_error">Username must be at least 3 characters.</string>
+    <string name="invalid_username_error">Invalid username. Only letters and numbers are allowed. No spaces.</string>
+    <string name="username_taken_error">Username already taken.</string>
+    <string name="unable_to_validate_username_error">Unable to validate username. Please try again.</string>
+    <string name="phone_number_verification_error">Unable to verify phone number. Please try again.</string>
+    <string name="confirm_passphrase_hint">Confirm Passphrase</string>
+    <string name="invalid_passphrase_error">Please enter a valid passphrase.</string>
+    <string name="differing_passphrase_error">Passphrases don\'t match. Please enter the same passphrase both times.</string>
 </resources>

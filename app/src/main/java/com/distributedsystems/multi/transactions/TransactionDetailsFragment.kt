@@ -23,11 +23,6 @@ class TransactionDetailsFragment : Fragment() {
     internal lateinit var viewModelFactory : GenericViewModelFactory<TransactionsViewModel>
     private lateinit var viewModel : TransactionsViewModel
 
-    private val navOptions = NavOptions.Builder()
-            .setExitAnim(R.anim.slide_out_bottom)
-            .setPopUpTo(R.id.transactionsFragment, true)
-            .build()
-
     private var transaction : TransactionFeedQuery.Transaction? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -50,10 +45,7 @@ class TransactionDetailsFragment : Fragment() {
         viewModel.setCurrentTransaction(null)
     }
 
-    private fun setToolbarNavOnClick() {
-        toolbar.setNavigationOnClickListener {
-            findNavController().navigate(R.id.transactionsFragment, null, navOptions)
-        }
-    }
+    private fun setToolbarNavOnClick() =
+            toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
 
 }

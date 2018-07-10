@@ -28,5 +28,9 @@ query TransactionFeed($address: EthereumAddressString!, $network: ETHEREUM_NETWO
                 timestamp
             }
         }
+        balance {
+            display
+            ether
+        }
     }
 }

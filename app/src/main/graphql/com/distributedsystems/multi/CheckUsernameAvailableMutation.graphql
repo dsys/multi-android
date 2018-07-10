@@ -1,0 +1,6 @@
+mutation CheckUsernameAvailable($username: String!) {
+  checkUsernameAvailable(input: { username: $username }) {
+    ok
+    message
+  }
+}

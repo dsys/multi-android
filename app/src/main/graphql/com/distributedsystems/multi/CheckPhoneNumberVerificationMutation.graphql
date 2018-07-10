@@ -1,0 +1,17 @@
+mutation CheckPhoneNumberVerification(
+  $phoneNumber: String!
+  $verificationCode: String!
+) {
+  checkPhoneNumberVerification(input: {
+    phoneNumber: $phoneNumber
+    verificationCode: $verificationCode
+  }) {
+    ok
+    message
+    phoneNumber {
+      hashedPhoneNumber
+    }
+    phoneNumberToken
+    phoneNumberTokenExpires
+  }
+}

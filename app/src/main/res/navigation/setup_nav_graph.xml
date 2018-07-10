@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/setup_nav_graph.xml"
+    app:startDestination="@id/selectWalletFragment">
+
+    <fragment
+        android:id="@+id/selectWalletFragment"
+        android:name="com.distributedsystems.multi.setup.steps.SelectWalletFragment"
+        android:label="SelectWalletFragment" >
+        <action
+            android:id="@+id/action_selectWalletFragment_to_claimUsernameFragment"
+            app:destination="@id/claimUsernameFragment" />
+        <action
+            android:id="@+id/action_selectWalletFragment_to_linkQRCodeFragment"
+            app:destination="@id/linkQRCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/claimUsernameFragment"
+        android:name="com.distributedsystems.multi.setup.steps.ClaimUsernameFragment"
+        android:label="ClaimUsernameFragment" >
+        <action
+            android:id="@+id/action_claimUsernameFragment_to_phoneNumberVerificationFragment"
+            app:destination="@id/startPhoneNumberVerificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startPhoneNumberVerificationFragment"
+        android:name="com.distributedsystems.multi.setup.steps.StartPhoneNumberVerificationFragment"
+        android:label="StartPhoneNumberVerificationFragment" >
+        <action
+            android:id="@+id/action_startPhoneNumberVerificationFragment_to_checkPhoneNumberVerificationFragment"
+            app:destination="@id/checkPhoneNumberVerificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/linkQRCodeFragment"
+        android:name="com.distributedsystems.multi.setup.steps.LinkQRCodeFragment"
+        android:label="LinkQRCodeFragment" >
+        <action
+            android:id="@+id/action_linkQRCodeFragment_to_setPassphraseFragment"
+            app:destination="@id/setPassphraseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setPassphraseFragment"
+        android:name="com.distributedsystems.multi.setup.steps.SetPassphraseFragment"
+        android:label="SetPassphraseFragment" />
+    <fragment
+        android:id="@+id/checkPhoneNumberVerificationFragment"
+        android:name="com.distributedsystems.multi.setup.steps.CheckPhoneNumberVerificationFragment"
+        android:label="CheckPhoneNumberVerificationFragment" >
+        <action
+            android:id="@+id/action_checkPhoneNumberVerificationFragment_to_linkQRCodeFragment"
+            app:destination="@id/linkQRCodeFragment" />
+    </fragment>
+</navigation>

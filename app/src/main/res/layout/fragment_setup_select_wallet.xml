@@ -4,151 +4,95 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="192dp"
+        android:layout_height="192dp"
+        android:src="@drawable/ic_multi_white"
+        android:background="@drawable/bg_circle"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
-        android:text="@string/step_1_label"
+        android:text="@string/welcome_to_multi"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:fontFamily="monospace"
-        app:layout_constraintVertical_bias="0.125"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/multi_device_option"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:focusable="true"
-        android:clickable="true"
-        android:background="@drawable/multi_device_shape"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
+        android:textSize="28sp"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:fontFamily="@font/opensans_bold"
+        android:textStyle="bold"
         android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/step_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/multi_description"
+        android:textColor="@color/lightGrey"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <ImageView
-            android:id="@+id/multi_device_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_launcher_dsys"
-            android:layout_marginStart="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/multi_device"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            app:layout_constraintStart_toEndOf="@id/multi_device_icon"
-            app:layout_constraintTop_toTopOf="@id/multi_device_icon"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/single_device_option"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:focusable="true"
-        android:clickable="true"
-        android:background="@drawable/single_device_shape"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
+    <Button
+        android:id="@+id/create_identity_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/multi_device_option"
+        android:text="@string/btn_label_get_started"
+        android:textSize="16sp"
+        android:layout_marginBottom="64dp"
+        android:minWidth="192dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:background="@drawable/ic_rounded_button"
+        android:backgroundTint="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/link_existing_label"/>
 
-        <ImageView
-            android:id="@+id/single_device_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_launcher_dsys"
-            android:layout_marginStart="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/single_device"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            app:layout_constraintStart_toEndOf="@id/single_device_icon"
-            app:layout_constraintTop_toTopOf="@id/single_device_icon"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-    </android.support.constraint.ConstraintLayout>
-
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/lightGrey"
+    <TextView
+        android:id="@+id/link_existing_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        app:layout_constraintTop_toBottomOf="@+id/single_device_option"/>
+        android:text="@string/link_existing_label"
+        android:textColor="@color/lightGrey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/link_existing_option"/>
 
-    <android.support.constraint.ConstraintLayout
+    <Button
         android:id="@+id/link_existing_option"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:focusable="true"
-        android:clickable="true"
-        android:background="@drawable/existing_device_shape"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/divider"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:background="@android:color/transparent"
+        android:text="@string/link_existing"
+        android:textSize="16sp"
+        android:textColor="@color/darkGrey"
+        android:textAllCaps="false"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        android:foregroundGravity="center"
+        android:layout_marginBottom="64dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:id="@+id/existing_device_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_launcher_dsys"
-            android:layout_marginStart="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/link_existing"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            app:layout_constraintStart_toEndOf="@id/existing_device_icon"
-            app:layout_constraintTop_toTopOf="@id/existing_device_icon"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-    </android.support.constraint.ConstraintLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

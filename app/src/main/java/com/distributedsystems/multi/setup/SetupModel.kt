@@ -7,8 +7,7 @@ data class SetupModel(
     var username : String = "",
     var phoneNumber : String = "",
     var country : String = "",
-    var multiDevice : Boolean = true,
-    var walletName : String = "My Wallet",
     var mnemonicPassphrase : String = "",
+    var secretPassphrase : String = "",
     var ecKeyPair : ECKeyPair? = null
 )

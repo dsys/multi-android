@@ -6,10 +6,7 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.response.CustomTypeAdapter
 import com.apollographql.apollo.response.CustomTypeValue
 import com.distributedsystems.multi.BuildConfig
-import com.distributedsystems.multi.networking.scalars.BigNumber
-import com.distributedsystems.multi.networking.scalars.EthereumAddressString
-import com.distributedsystems.multi.networking.scalars.EthereumTransactionHashHexValue
-import com.distributedsystems.multi.networking.scalars.HexValue
+import com.distributedsystems.multi.networking.scalars.*
 import com.distributedsystems.multi.type.CustomType
 import dagger.Module
 import dagger.Provides
@@ -18,6 +15,8 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -107,11 +106,27 @@ class GraphModule {
 
     @Provides
     @Singleton
+    fun providesDateTimeCustomTypeAdapter() : CustomTypeAdapter<DateTime> =
+            object : CustomTypeAdapter<DateTime> {
+                override fun decode(value: CustomTypeValue<*>): DateTime {
+                    val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+                    return DateTime(sdf.parse(value.value.toString()))
+                }
+
+                override fun encode(value: DateTime): CustomTypeValue<*> {
+                    return CustomTypeValue.GraphQLString(value.toString())
+                }
+            }
+
+
+    @Provides
+    @Singleton
     fun provideApolloClient (@NonNull okHttpClient: OkHttpClient,
                              @NonNull hexValueAdapter: CustomTypeAdapter<HexValue>,
                              @NonNull addressHexAdapter: CustomTypeAdapter<EthereumAddressString>,
                              @NonNull bigNumberAdapter: CustomTypeAdapter<BigNumber>,
-                             @NonNull transactionHashAdapter: CustomTypeAdapter<EthereumTransactionHashHexValue>) : ApolloClient =
+                             @NonNull transactionHashAdapter: CustomTypeAdapter<EthereumTransactionHashHexValue>,
+                             @NonNull dateTimeAdapter: CustomTypeAdapter<DateTime>) : ApolloClient =
             ApolloClient.builder()
                     .serverUrl("https://${BuildConfig.BASE_URL}")
                     .okHttpClient(okHttpClient)
@@ -119,6 +134,7 @@ class GraphModule {
                     .addCustomTypeAdapter(CustomType.HEXVALUE, hexValueAdapter)
                     .addCustomTypeAdapter(CustomType.ETHEREUMTRANSACTIONHASHHEXVALUE, transactionHashAdapter)
                     .addCustomTypeAdapter(CustomType.BIGNUMBER, bigNumberAdapter)
+                    .addCustomTypeAdapter(CustomType.DATETIME, dateTimeAdapter)
                     .build()
 
 }

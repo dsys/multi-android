@@ -11,6 +11,5 @@ data class Wallet (
         @ColumnInfo(name = "inserted_at") var insertedAt: Date?,
         @ColumnInfo(name = "private_key") var privateKey: String,
         @ColumnInfo(name = "public_key") var publicKey: String,
-        @ColumnInfo(name = "eth_address") var ethAddress: String,
-        @ColumnInfo(name = "name") var name: String
+        @ColumnInfo(name = "eth_address") var ethAddress: String
 )

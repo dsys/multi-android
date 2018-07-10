@@ -3,10 +3,10 @@
 buildscript {
 
     ext {
-        versions = [kotlin: "1.2.50",
+        versions = [kotlin: "1.2.51",
                     anko: "0.10.5",
                     support_lib: "27.1.1",
-                    nav_version: "1.0.0-alpha02",
+                    nav_version: "1.0.0-alpha04",
                     dagger2: "2.16",
                     rx_java: "2.1.14",
                     rx_android: "2.0.2",

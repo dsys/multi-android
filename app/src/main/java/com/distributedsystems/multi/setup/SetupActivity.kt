@@ -1,17 +1,20 @@
 package com.distributedsystems.multi.setup
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Rect
+import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.distributedsystems.multi.MultiApp
 import com.distributedsystems.multi.R
 import com.distributedsystems.multi.common.*
-import com.distributedsystems.multi.setup.steps.IntroFragment
 import javax.inject.Inject
 
 class SetupActivity : AppCompatActivity() {
@@ -19,16 +22,14 @@ class SetupActivity : AppCompatActivity() {
     @Inject
     internal lateinit var viewModelFactory : GenericViewModelFactory<SetupViewModel>
     private lateinit var viewModel : SetupViewModel
+    private lateinit var navController : NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         MultiApp.get().getComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setup)
         viewModel = getViewModel(SetupViewModel::class.java, viewModelFactory)
-
-        if(savedInstanceState == null) {
-            replaceFragment(R.id.main_fragment_holder, IntroFragment.newInstance())
-        }
+        navController = findNavController(R.id.setup_nav_host_fragment)
     }
 
     override fun onBackPressed() {
@@ -37,11 +38,6 @@ class SetupActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
-
-    }
-
-    fun addAndReplaceFragment(fragment: Fragment) {
-        addAndReplaceFragment(R.id.main_fragment_holder, fragment)
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
@@ -58,6 +54,13 @@ class SetupActivity : AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(event)
+    }
+
+    override fun onSupportNavigateUp(): Boolean = findNavController(R.id.nav_host_fragment).navigateUp()
+
+    @TargetApi(Build.VERSION_CODES.O)
+    fun disableAutofill() {
+        window.decorView.importantForAutofill = View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS
     }
 
 }

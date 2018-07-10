@@ -74,6 +74,10 @@ class TransactionsFragment : Fragment() {
             val expansionOffsetDivider = appBarLayout.totalScrollRange/16f
 
             wallet_holder.rotationX = (verticalOffset/rotationOffsetDivider)
+            wallet_balance.translationX = (verticalOffset/rotationOffsetDivider)*10
+            wallet_balance.alpha = (1 + (verticalOffset/rotationOffsetDivider)/45)
+            wallet_balance_label.translationX = -(verticalOffset/rotationOffsetDivider)*10
+            wallet_balance_label.alpha = (1 + (verticalOffset/rotationOffsetDivider)/45)
 
             val lp = list_holder.layoutParams as CoordinatorLayout.LayoutParams
             val titleLp = list_title.layoutParams as LinearLayout.LayoutParams
@@ -86,6 +90,7 @@ class TransactionsFragment : Fragment() {
                 marginStart = toDp(gutter)
                 marginEnd = toDp(gutter)
             }
+
 
             list_title.setPadding(toDp(16-gutter), toDp(16), toDp(16-gutter), toDp(16))
 
@@ -107,12 +112,14 @@ class TransactionsFragment : Fragment() {
             val qrBitmap = QRCode.from(publicKey).bitmap()
             issue_date.text = resources.getString(R.string.wallet_issue_date,
                     formatIssuedDate(wallet!!.insertedAt!!))
-            wallet_name.text = wallet!!.name
             eth_address.text = resources.getString(R.string.wallet_address_subtext,
                     publicKey.substring(publicKey.length - 5 until publicKey.length))
             qr_code.setImageBitmap(qrBitmap)
             viewModel.fetchTransactions(false)
             observeTransactions()
+        })
+        viewModel.getWalletBalance().observe(this, Observer<String> {
+            wallet_balance.text = it
         })
     }
 
