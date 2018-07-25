@@ -12,12 +12,16 @@ import com.distributedsystems.multi.TransactionFeedQuery
 import com.distributedsystems.multi.common.Preferences
 import com.distributedsystems.multi.db.Wallet
 import com.distributedsystems.multi.db.WalletDao
+import com.distributedsystems.multi.networking.scalars.BigNumber
 import com.distributedsystems.multi.networking.scalars.EthereumAddressString
 import com.distributedsystems.multi.type.ETHEREUM_NETWORK
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.defaultSharedPreferences
 import org.jetbrains.anko.toast
+import org.web3j.crypto.RawTransaction
+import java.math.BigDecimal
+import java.math.BigInteger
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -38,6 +42,8 @@ class TransactionsViewModel @Inject constructor(
     private val transactions = MutableLiveData<List<TransactionFeedQuery.Transaction>>()
     private val transactionsError = MutableLiveData<String>()
     private val wallet = MutableLiveData<Wallet>()
+    private var walletBalanceEth : BigNumber = BigNumber(BigDecimal.ZERO)
+    private val walletBalanceDisplay = MutableLiveData<String>()
     private var currentTransaction : TransactionFeedQuery.Transaction? = null
     private val compositeDisposable = CompositeDisposable()
 
@@ -56,6 +62,8 @@ class TransactionsViewModel @Inject constructor(
                     .subscribe({
                         if (!it.hasErrors()) {
                             transactions.postValue(it.data()!!.ethereumAddress()!!.transactions()!!.reversed())
+                            walletBalanceDisplay.postValue(it.data()!!.ethereumAddress()!!.balance().display())
+                            walletBalanceEth = it.data()!!.ethereumAddress()!!.balance().ether()
                         } else {
                             Log.e(LOG_TAG, it.errors().first().message())
                             transactionsError.postValue("Unable to load transactions")
@@ -77,7 +85,7 @@ class TransactionsViewModel @Inject constructor(
                 .subscribe({
                     wallet.postValue(it)
                 }, {
-                    MultiApp.get().toast("Unable to load wallet")
+                    Log.e(LOG_TAG, "Unable to load wallet")
                 })
 
         compositeDisposable.add(disposable)
@@ -170,6 +178,10 @@ class TransactionsViewModel @Inject constructor(
         return wallet
     }
 
+    fun getWalletBalance() : MutableLiveData<String> {
+        return walletBalanceDisplay
+    }
+
     fun setCurrentTransaction(transaction: TransactionFeedQuery.Transaction?) {
         currentTransaction = transaction
     }
@@ -184,6 +196,14 @@ class TransactionsViewModel @Inject constructor(
 
     fun clearDisposable() {
         compositeDisposable.clear()
+    }
+
+    fun sendTransaction() {
+        val rawTransaction = RawTransaction.createEtherTransaction(
+                null, BigInteger.valueOf(9000), BigInteger.valueOf(9000), "", BigInteger.valueOf(1000)
+        )
+//        val signatureData = Sign.signMessage(rawTransaction, )
+//        val signedMessage = TransactionEncoder.signMessage(rawTransaction,)
     }
 
     override fun onCleared() {

@@ -2,6 +2,7 @@ package com.distributedsystems.multi.common
 
 import android.arch.lifecycle.*
 import android.content.Context
+import android.content.res.Resources
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.content.ContextCompat
@@ -45,5 +46,13 @@ internal fun Fragment.toDp(dp: Int) : Int {
             dp.toFloat(),
             r.displayMetrics
     ))
+}
 
+internal fun Int.toDp() : Int {
+    val r = Resources.getSystem()
+    return Math.round(TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            this.toFloat(),
+            r.displayMetrics
+    ))
 }

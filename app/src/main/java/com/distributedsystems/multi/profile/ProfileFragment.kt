@@ -50,7 +50,6 @@ class ProfileFragment : Fragment() {
                     val qrBitmap = QRCode.from(publicKey).bitmap()
                     issue_date.text = resources.getString(R.string.wallet_issue_date,
                             formatIssuedDate(wallet!!.insertedAt!!))
-                    wallet_name.text = wallet!!.name
                     eth_address.text = resources.getString(R.string.wallet_address_subtext,
                             publicKey.substring(publicKey.length - 5 until publicKey.length))
                     qr_code.setImageBitmap(qrBitmap)

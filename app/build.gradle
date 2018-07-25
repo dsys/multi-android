@@ -36,6 +36,7 @@ apollo {
     customTypeMapping['EthereumTransactionHashHexValue'] = "com.distributedsystems.multi.networking.scalars.EthereumTransactionHashHexValue"
     customTypeMapping['BigNumber'] = "com.distributedsystems.multi.networking.scalars.BigNumber"
     customTypeMapping['HexValue'] = "com.distributedsystems.multi.networking.scalars.HexValue"
+    customTypeMapping['DateTime'] = "com.distributedsystems.multi.networking.scalars.DateTime"
 }
 
 dependencies {
@@ -84,6 +85,11 @@ dependencies {
 
     // QR Code Generation
     implementation "com.github.kenglxn.QRGen:android:2.4.0"
+    implementation "com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.3"
+
+    // Custom Views
+    implementation "com.hbb20:ccp:2.2.2"
+    implementation "com.github.irvingryan:verifycodeview:1.1.0"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

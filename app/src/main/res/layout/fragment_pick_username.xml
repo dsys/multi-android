@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="192dp"
+            android:layout_height="192dp"
+            android:src="@drawable/create_identity_illustration"
+            android:background="@drawable/bg_circle"
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="32dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/name_uname_step_title"
+            android:textAllCaps="true"
+            android:fontFamily="@font/opensans_bold"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon"/>
+
+        <EditText
+            android:id="@+id/full_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginTop="32dp"
+            android:textColor="@color/darkGrey"
+            android:hint="@string/full_name_hint"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginTop="32dp"
+            android:textColor="@color/darkGrey"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:maxLines="1"
+            app:layout_constraintTop_toBottomOf="@id/full_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/username_status"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:layout_constraintEnd_toEndOf="@id/username"
+            app:layout_constraintTop_toTopOf="@id/username"
+            app:layout_constraintBottom_toBottomOf="@id/username"
+            android:visibility="invisible"
+            android:src="@drawable/ic_check_circle"
+            android:tint="@color/successGreen"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"/>
+
+        <ProgressBar
+            android:id="@+id/username_status_loader"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@id/username"
+            app:layout_constraintTop_toTopOf="@id/username"
+            app:layout_constraintBottom_toBottomOf="@id/username"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@string/btn_label_next"
+            android:textSize="16sp"
+            android:layout_marginBottom="64dp"
+            android:minWidth="200dp"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:background="@drawable/ic_rounded_button"
+            android:backgroundTint="@color/colorPrimary"
+            android:enabled="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/username"/>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

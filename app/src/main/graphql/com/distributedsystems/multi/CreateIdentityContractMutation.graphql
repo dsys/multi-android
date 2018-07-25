@@ -1,0 +1,25 @@
+mutation CreateIdentityContract(
+  $username: String!
+  $phoneNumberToken: String!
+  $managerAddresses: [EthereumAddressString!]!
+  $network: ETHEREUM_NETWORK
+  $passphraseRecoveryHash: String
+  $socialRecoveryAddresses: [EthereumAddressString!]
+) {
+  createIdentityContract(input: {
+    username: $username
+    phoneNumberToken: $phoneNumberToken
+    managerAddresses: $managerAddresses
+    network: $network
+    passphraseRecoveryHash: $passphraseRecoveryHash
+    socialRecoveryAddresses: $socialRecoveryAddresses
+  }) {
+    ok
+    message
+    identityContract { # stub: null for now
+      address {
+        display
+      }
+    }
+  }
+}

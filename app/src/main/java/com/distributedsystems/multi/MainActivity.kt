@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var currentFragment : Int = R.id.transactionsFragment
-    private var disposable = CompositeDisposable()
     private lateinit var navController : NavController
     private var navOptions = NavOptions.Builder()
             .setEnterAnim(R.anim.default_enter)
@@ -50,12 +49,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.nav_host_fragment)
         if(savedInstanceState == null) {
-            navController.navigate(R.id.transactionsFragment)
             navigation.selectedItemId = R.id.transactionsFragment
         }
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        setOnNavigationListener()
     }
+
+    private fun setOnNavigationListener() =
+            findNavController(R.id.nav_host_fragment).addOnNavigatedListener { _, destination ->
+                navigation.selectedItemId = destination.id
+            }
 
     override fun onSupportNavigateUp(): Boolean = findNavController(R.id.nav_host_fragment).navigateUp()
 

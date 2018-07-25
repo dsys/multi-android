@@ -6,10 +6,8 @@ import com.distributedsystems.multi.MainActivity
 import com.distributedsystems.multi.MultiApp
 import com.distributedsystems.multi.profile.ProfileFragment
 import com.distributedsystems.multi.setup.SetupActivity
-import com.distributedsystems.multi.setup.steps.IntroFragment
-import com.distributedsystems.multi.setup.steps.SelectWalletFragment
-import com.distributedsystems.multi.setup.steps.single.ConfirmMnemonicFragment
-import com.distributedsystems.multi.setup.steps.single.DisplayMnemonicFragment
+import com.distributedsystems.multi.setup.steps.*
+import com.distributedsystems.multi.transactions.SendTransactionFragment
 import com.distributedsystems.multi.transactions.TransactionDetailsFragment
 import com.distributedsystems.multi.transactions.TransactionsFragment
 import dagger.BindsInstance
@@ -40,13 +38,17 @@ import javax.inject.Singleton
     fun inject(landingActivity: LandingActivity)
 
     fun inject(setupActivity: SetupActivity)
-    fun inject(introFragment: IntroFragment)
     fun inject(selectWalletFragment: SelectWalletFragment)
-    fun inject(displayMnemonicFragment: DisplayMnemonicFragment)
-    fun inject(confirmMnemonicFragment: ConfirmMnemonicFragment)
+    fun inject(claimUsernameFragment: ClaimUsernameFragment)
+    fun inject(startPhoneNumberVerificationFragment: StartPhoneNumberVerificationFragment)
+    fun inject(checkPhoneNumberVerificationFragment: CheckPhoneNumberVerificationFragment)
+    fun inject(linkQRCodeFragment: LinkQRCodeFragment)
+    fun inject(passphraseFragment: SetPassphraseFragment)
 
     fun inject(mainActivity: MainActivity)
     fun inject(profileFragment: ProfileFragment)
+
     fun inject(transactionsFragment: TransactionsFragment)
     fun inject(transactionDetailsFragment: TransactionDetailsFragment)
+    fun inject(sendTransactionFragment: SendTransactionFragment)
 }
