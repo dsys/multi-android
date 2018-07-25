@@ -32,4 +32,5 @@ class AppModule(private val app: Application) {
     fun providesWalletDatabase(context: Context) : WalletDao {
         return MultiDatabase.getInstance(context).walletDao()
     }
+
 }

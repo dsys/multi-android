@@ -112,8 +112,7 @@ class TransactionsFragment : Fragment() {
             val qrBitmap = QRCode.from(publicKey).bitmap()
             issue_date.text = resources.getString(R.string.wallet_issue_date,
                     formatIssuedDate(wallet!!.insertedAt!!))
-            eth_address.text = resources.getString(R.string.wallet_address_subtext,
-                    publicKey.substring(publicKey.length - 5 until publicKey.length))
+            eth_address.text = wallet!!.ensDomain
             qr_code.setImageBitmap(qrBitmap)
             viewModel.fetchTransactions(false)
             observeTransactions()

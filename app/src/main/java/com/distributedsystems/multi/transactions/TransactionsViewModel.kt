@@ -85,7 +85,7 @@ class TransactionsViewModel @Inject constructor(
                 .subscribe({
                     wallet.postValue(it)
                 }, {
-                    MultiApp.get().toast("Unable to load wallet")
+                    Log.e(LOG_TAG, "Unable to load wallet")
                 })
 
         compositeDisposable.add(disposable)

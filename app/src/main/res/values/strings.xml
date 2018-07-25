@@ -114,4 +114,6 @@
     <string name="confirm_passphrase_hint">Confirm Passphrase</string>
     <string name="invalid_passphrase_error">Please enter a valid passphrase.</string>
     <string name="differing_passphrase_error">Passphrases don\'t match. Please enter the same passphrase both times.</string>
+    <string name="creating_account_description">Please wait while we finish setting up your wallet!</string>
+    <string name="creating_account">Creating Wallet…</string>
 </resources>

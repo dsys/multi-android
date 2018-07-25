@@ -23,6 +23,8 @@ class StartPhoneNumberVerificationFragment : Fragment() {
         private val LOG_TAG = this::class.java.simpleName
     }
 
+    val RESOLVE_HINT : Int = 100
+
     @Inject
     internal lateinit var viewModelFactory : GenericViewModelFactory<SetupViewModel>
     private lateinit var setupViewModel : SetupViewModel
